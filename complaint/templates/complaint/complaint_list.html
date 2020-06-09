@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container">
+    {% ifequal user.account.category 'customer' %}
+    <div class="row">
+        <div class="col">
+            <a href="{% url 'complaint' %}" class="btn btn-primary float-right">Register Complaint</a>
+        </div>
+    </div>
+    {% endifequal %}
+    {% for i in complaint %}
+    <div class="row">
+        <div class="col-12">
+            <div class="row">
+                <div class="col">
+                    <a href="{% url 'complaint-view' i.id %}"> {{ i.user }} </a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    {{ i.datetime }}
+                </div>
+                <div class="col">
+                    {{ i.status }}
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock content %}

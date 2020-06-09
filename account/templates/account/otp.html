@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container">
+                <div class="row">
+                    <div class="col-md-6 mx-auto">
+                        <div class="card">
+                                <div class="card-header bg-primary text-white">
+                                        <h4><i class="fas fa-user-plus"></i>Enter OTP </h4>
+                                    </div>
+                            <div class="card-body">
+                                {% include '_alerts.html' %}
+                                                <form method="POST">
+                                                        {% csrf_token %}
+                                                      <div class="form-group">
+                                                        <label for="exampleInputUsername1">OTP</label>
+                                                        <input name="otp" type="text" class="form-control" id="exampleInputUsername1" placeholder="Enter username" required>
+                                                      </div>
+                                                    <button type="submit" class="btn btn-primary">Verify</button>
+                                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+ </div>
+{% endblock content %}

@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container">
+    {% for i in users %}
+    <div class="row">
+        <div class="col-12">
+        <div class="row">
+            <div class="col">
+                <a href="{% url 'user-view' i.account.id %}" class="card-link">{{ i.username }}</a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                category:- {{ i.account.category }}
+            </div>
+        </div>
+        </div>
+    </div>
+    <hr />
+    {% endfor %}
+</div>
+
+{% endblock content %}

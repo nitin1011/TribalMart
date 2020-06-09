@@ -1,0 +1,111 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container">
+                <div class="row">
+                    <div class="col-md-6 mx-auto">
+                        <div class="card">
+                                <div class="card-header bg-primary text-white">
+                                        <h2><i class="fas fa-user-plus"></i>{{ account.username }} </h2>
+                                    </div>
+                            <div class="card-body">
+                                {% ifnotequal account.firstname '' %}
+                                <div class="row">
+                                    <div class="col">
+                                        <h4>First Name</h4>
+                                    </div>
+                                    <div>
+                                        <h4>{{ account.firstname }}</h4>
+                                    </div>
+                                </div>
+                                {% endifnotequal %}
+                                {% ifnotequal account.lastname '' %}
+                                <div class="row">
+                                    <div class="col">
+                                        <h4>Last Name</h4>
+                                    </div>
+                                    <div>
+                                        <h4>{{ account.lastname }}</h4>
+                                    </div>
+                                </div>
+                                {% endifnotequal %}
+                                {% ifnotequal account.email '' %}
+                                <div class="row">
+                                    <div class="col">
+                                        <h4>Email</h4>
+                                    </div>
+                                    <div>
+                                        <h4>{{ account.email }}</h4>
+                                    </div>
+                                </div>
+                                {% endifnotequal %}
+                                {% ifnotequal account.mobile '' %}
+                                <div class="row">
+                                    <div class="col">
+                                        <h4>Mobile No.</h4>
+                                    </div>
+                                    <div>
+                                        <h4>{{ account.mobile }}</h4>
+                                    </div>
+                                </div>
+                                {% endifnotequal %}
+                                {% ifnotequal account.state '' %}
+                                <div class="row">
+                                    <div class="col">
+                                        <h4>State</h4>
+                                    </div>
+                                    <div>
+                                        <h4>{{ account.state }}</h4>
+                                    </div>
+                                </div>
+                                {% endifnotequal %}
+                                {% ifnotequal account.city '' %}
+                                <div class="row">
+                                    <div class="col">
+                                        <h4>City</h4>
+                                    </div>
+                                    <div>
+                                        <h4>{{ account.city }}</h4>
+                                    </div>
+                                </div>
+                                {% endifnotequal %}
+                                {% ifnotequal account.pincode '' %}
+                                <div class="row">
+                                    <div class="col">
+                                        <h4>Pincode</h4>
+                                    </div>
+                                    <div>
+                                        <h4>{{ account.pincode }}</h4>
+                                    </div>
+                                </div>
+                                {% endifnotequal %}
+                                {% ifnotequal account.area '' %}
+                                <div class="row">
+                                    <div class="col">
+                                        <h4>Area</h4>
+                                    </div>
+                                    <div>
+                                        <h4>{{ account.area }}</h4>
+                                    </div>
+                                </div>
+                                {% endifnotequal %}
+                                {% ifnotequal account.address '' %}
+                                <div class="row">
+                                    <div class="col">
+                                        <h4>Address</h4>
+                                    </div>
+                                    <div>
+                                        <h4>{{ account.address }}</h4>
+                                    </div>
+                                </div>
+                                {% endifnotequal %}
+                                {% ifequal account.category 'shopkeeper' %}
+                                <a href="{% url 'all-product' %}" class="btn btn-primary mt-3 float-right">All Product</a>
+                                {% endifequal %}
+                                <a href="{% url 'edit-profile' %}" class="btn btn-primary mt-3 mr-1 float-right">Edit Account</a>
+                                <a href="{% url 'change-password' %}" class="btn btn-primary mt-3 mr-1 float-right">Change Password</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+</div>
+{% endblock content %}

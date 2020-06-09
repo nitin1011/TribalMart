@@ -1,0 +1,98 @@
+{% extends 'base.html' %}
+
+{% block content %}
+ <div class="container">
+                <div class="row">
+                    <div class="col-md-6 mx-auto">
+                        <div class="card">
+                                <div class="card-header bg-primary text-white">
+                                        <h4><i class="fas fa-user-plus"></i>Register </h4>
+                                    </div>
+                            <div class="card-body">
+                                <nav>
+                                    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                                        <a class="nav-item nav-link active" id="nav-customer-tab" data-toggle="tab" href="#nav-customer" role="tab" aria-controls="nav-home" aria-selected="true">Customer</a>
+                                        <a class="nav-item nav-link" id="nav-shopkeeper-tab" data-toggle="tab" href="#nav-shopkeeper" role="tab" aria-controls="nav-profile" aria-selected="false">Shop</a>
+                                    </div>
+                                </nav>
+                                    <div class="tab-content" id="nav-tabContent">
+                                        <div class="tab-pane fade show active" id="nav-customer" role="tabpanel" aria-labelledby="nav-customer-tab">
+                                            <!--ALERT-->
+                                            {% include '_alerts.html' %}
+                                                <form method="POST">
+                                                        {% csrf_token %}
+                                                    <div class="form-group" hidden>
+                                                        <input name="category" type="text" class="form-control" value="customer" required>
+                                                    </div>
+                                                      <div class="form-group">
+                                                        <label for="exampleInputUsername1">Username</label>
+                                                        <input name="username" type="text" class="form-control" id="exampleInputUsername1" placeholder="Enter username" required>
+                                                      </div>
+                                                      <div class="form-group">
+                                                        <label for="exampleInputEmail1">Email address</label>
+                                                        <input name="email" type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email" required>
+                                                      </div>
+                                                        <div class="form-group">
+                                                        <label for="exampleInputMobile1">Mobile Number</label>
+                                                        <input name="mobile" type="text" class="form-control" id="exampleInputMobile1" placeholder="Enter Mobile No." required>
+                                                      </div>
+                                                      <div class="form-group">
+                                                        <label for="exampleInputPassword11">Password</label>
+                                                        <input name="password" type="password" class="form-control" id="exampleInputPassword11" placeholder="Password" required>
+                                                      </div>
+                                                      <div class="form-group">
+                                                        <label for="exampleInputPassword21">Confirm Password</label>
+                                                        <input name="password2" type="password" class="form-control" id="exampleInputPassword21" placeholder="Password" required>
+                                                      </div>
+                                                      <div class="form-group form-check">
+                                                        <input type="checkbox" name="terms" class="form-check-input" id="exampleCheck11">
+                                                        <label class="form-check-label" for="exampleCheck11">I accept all <a href="#"> terms and conditions. </a></label>
+                                                      </div>
+                                                      <button type="submit" class="btn btn-primary">Submit</button>
+                                                    </form>
+                                        </div>
+                                        <div class="tab-pane fade" id="nav-shopkeeper" role="tabpanel" aria-labelledby="nav-shopkeeper-tab">
+                                                <form method="POST">
+                                                        {% csrf_token %}
+                                                    <div class="form-group" hidden>
+                                                        <input name="category" type="text" class="form-control" value="shopkeeper" required>
+                                                    </div>
+                                                      <div class="form-group">
+                                                        <label for="exampleInputUsername2">Shop Name</label>
+                                                        <input name="username" type="text" class="form-control" id="exampleInputUsername2" placeholder="Enter username" required>
+                                                      </div>
+                                                        <div class="form-group">
+                                                        <label for="exampleInputEmail2">Email address</label>
+                                                        <input name="email" type="email" class="form-control" id="exampleInputEmail2" placeholder="Enter email" required>
+                                                      </div>
+                                                        <div class="form-group">
+                                                        <label for="exampleInputMobile2">Mobile Number</label>
+                                                        <input name="mobile" type="text" class="form-control" id="exampleInputMobile2" placeholder="Enter Mobile No." required>
+                                                      </div>
+                                                      <div class="form-group">
+                                                        <label for="exampleInputPassword12">Password</label>
+                                                        <input name="password" type="password" class="form-control" id="exampleInputPassword12" placeholder="Password" required>
+                                                      </div>
+                                                      <div class="form-group">
+                                                        <label for="exampleInputPassword22">Confirm Password</label>
+                                                        <input name="password2" type="password" class="form-control" id="exampleInputPassword22" placeholder="Password" required>
+                                                      </div>
+                                                      <div class="form-group form-check">
+                                                        <input type="checkbox" name="terms" class="form-check-input" id="exampleCheck12">
+                                                        <label class="form-check-label" for="exampleCheck12">I accept all <a href="#"> terms and conditions. </a></label>
+                                                      </div>
+                                                      <button type="submit" class="btn btn-primary">Submit</button>
+                                                    </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            <div class="row mb-3">
+                                <div class="col mr-5 ml-5 text-center">
+                                    or <a href="{% url 'login' %}">Login</a>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+{% endblock content %}

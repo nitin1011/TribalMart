@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<div id="carouselExampleSlidesOnly" class="carousel slide mt-3" data-ride="carousel">
+  <div class="carousel-inner">
+    <div style="height: 700px;" class="carousel-item active">
+        <img src="{% static 'image1.jpg' %}" class="d-block w-100" alt="...">
+    </div>
+    <div style="height: 700px;" class="carousel-item">
+      <img src="{% static 'image2.jpg' %}" class="d-block w-100" alt="...">
+    </div>
+    <div style="height: 700px;" class="carousel-item">
+      <img src="{% static 'image3.jpg' %}" class="d-block w-100" alt="...">
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row row-cols-3 mt-3">
+      {% for i in product %}
+      <div class="col-lg-4 d-flex align-items-stretch mb-5">
+          <div class="card" style="width: 18rem;">
+              <img width="200px" height="300px" class="card-img-top" src="{{ i.product_image.url }}" alt="Card image cap">
+              <a href="{% url 'product-detail' i.id %}" class="text-decoration-none">
+                  <div class="card-body">
+                    <h5 class="card-title text-dark">{{ i.product_name }}</h5>
+                    <p class="card-text text-dark">&#8377;{{ i.product_price }}</p>
+                  </div>
+              </a>
+          </div>
+      </div>
+      {% endfor %}
+  </div>
+</div>
+
+{% endblock content %}

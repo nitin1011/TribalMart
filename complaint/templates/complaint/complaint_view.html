@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            Customer
+        </div>
+        <div class="col">
+            {{ complaint.user.username }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            Order id
+        </div>
+        <div class="col">
+            {{ complaint.orderid }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            Complaint
+        </div>
+        <div class="col">
+            {{ complaint.complaint }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            Reply
+        </div>
+        <div class="col">
+            {{ complaint.reply }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            Replied
+        </div>
+        <div class="col">
+            {{ complaint.replied }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            Status
+        </div>
+        {% ifequal complaint.status 'notreplied' %}
+        <div class="col text-danger">
+            Not Replied
+        </div>
+        {% else %}
+        <div class="col text-success">
+            Replied
+        </div>
+        {% endifequal %}
+    </div>
+    <div class="row">
+        <div class="col">
+            Date
+        </div>
+        <div class="col">
+            {{ complaint.datetime }}
+        </div>
+    </div>
+    {% ifequal user.account.category 'cra' %}
+    <div class="row mt-3">
+        <div class="col">
+            <a href="{% url 'complaint-reply' complaint.id %}" class="btn btn-primary float-right">Reply</a>
+        </div>
+    </div>
+    {% endifequal %}
+</div>
+
+{% endblock content %}

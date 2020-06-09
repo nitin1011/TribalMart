@@ -1,0 +1,205 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            Order id
+        </div>
+        <div class="col text-success">
+            {{ order.orderid }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            Customer
+        </div>
+        <div class="col text-success">
+            {{ order.customer.username }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            Shopkeeper
+        </div>
+        <div class="col text-success">
+            {{ order.shop_user }}
+        </div>
+    </div>
+    {% ifequal account.category 'customer' %}
+    <div class="row">
+        <div class="col">
+            Shopkeeper Mobile no.
+        </div>
+        <div class="col text-success">
+            {{ shopkeeper.mobile }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            Shopkeeper Email id
+        </div>
+        <div class="col text-success">
+            {{ shopkeeper.email }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            Address
+        </div>
+        <div class="col text-success">
+            {{ shopkeeper.address }}, {{ shopkeeper.area }}, {{ shopkeeper.city }}-{{ shopkeeper.pincode }}, {{ shopkeeper.state }}
+        </div>
+    </div>
+    {% endifequal %}
+    {% ifequal account.category 'shopkeeper' %}
+    <div class="row">
+        <div class="col">
+            Customer Mobile no.
+        </div>
+        <div class="col text-success">
+            {{ customer.mobile }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            Customer Email id
+        </div>
+        <div class="col text-success">
+            {{ customer.email }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            Address
+        </div>
+        <div class="col text-success">
+            {{ customer.address }}, {{ customer.area }}, {{ customer.city }}-{{ customer.pincode }}, {{ customer.state }}
+        </div>
+    </div>
+    {% endifequal %}
+        <div class="row">
+            <div class="col-5 border font-weight-bold">
+                Product Name
+            </div>
+            <div class="col border font-weight-bold">
+                Product Price
+            </div>
+            <div class="col border font-weight-bold">
+                Product Discount
+            </div>
+            <div class="col border font-weight-bold">
+                Quantity
+            </div>
+            <div class="col border font-weight-bold">
+                Final Price
+            </div>
+        </div>
+        {% for i in order.orderitem_set.all %}
+        <div class="row">
+            <div class="col-5 border">
+                {{ i.product.product_name }}
+            </div>
+            <div class="col border">
+                &#8377;{{ i.product.product_price }}
+            </div>
+            <div class="col border">
+                {{ i.product.product_discount }}%
+            </div>
+            <div class="col border">
+                {{ i.quantity }}
+            </div>
+            <div class="col border">
+                &#8377;{{ i.price }}
+            </div>
+        </div>
+        {% endfor %}
+    <div class="row">
+        <div class="col">
+            Status
+        </div>
+        {% ifequal order.status 'notstarted' %}
+        <div class="col text-danger">
+            Not Started
+        </div>
+        {% else %}
+        {% ifequal order.status 'started' %}
+        <div class="col text-warning">
+            Started
+        </div>
+        {% else %}
+        {% ifequal order.status 'canceled' %}
+        <div class="col text-danger">
+            Canceled
+        </div>
+        {% else %}
+        {% ifequal order.status 'finished' %}
+        <div class="col text-success">
+            Finished
+        </div>
+        {% else %}
+        {% endifequal %}
+        {% endifequal %}
+        {% endifequal %}
+        {% endifequal %}
+    </div>
+    <div class="row">
+        <div class="col">
+            Subtotal
+        </div>
+        <div class="col text-success">
+            &#8377;{{ order.subtotal }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            Shipping
+        </div>
+        <div class="col text-success">
+            &#8377;{{ order.shipping }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            Final Total
+        </div>
+        <div class="col text-success">
+            &#8377;{{ order.finaltotal }}
+        </div>
+    </div>
+    {% ifequal account.category 'shopkeeper' %}
+    {% ifequal order.status 'notstarted' %}
+    <div class="row mt-3">
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="delivery" class="sr-only">Password</label>
+                <input name="delivery" type="text" class="form-control" id="delivery" placeholder="Delivery Charge">
+              </div>
+              <button type="submit" class="btn btn-primary mb-2">Accept</button>
+            <a href="{% url 'canceled' order.id %}" class="btn btn-primary mb-2">Reject</a>
+        </form>
+    </div>
+    {% endifequal %}
+    {% ifequal order.status 'started' %}
+    <div class="row">
+        <div class="col">
+            <a href="{% url 'finished' order.id %}" class="btn btn-primary float-right">Finished</a>
+        </div>
+    </div>
+    {% endifequal %}
+    {% endifequal %}
+    {% ifequal account.category 'customer' %}
+    {% ifnotequal order.status 'finished' %}
+    {% ifnotequal order.status 'canceled' %}
+    <div class="row">
+        <div class="col">
+            <a href="{% url 'canceled' order.id %}" class="btn btn-primary float-right">Canceled</a>
+        </div>
+    </div>
+    {% endifnotequal %}
+    {% endifnotequal %}
+    {% endifequal %}
+</div>
+
+{% endblock content %}

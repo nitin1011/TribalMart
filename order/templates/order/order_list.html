@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <div class="col-sm-8 col-sm-offset-2">
+            {% if empty %}
+
+                <h1 align="center">No Order</h1>
+
+            {% else %}
+
+            <table style="margin-left: 50px" width="100%">
+
+                {% for i in order %}
+                <tr>
+                    <td><a href="{% url 'order-view' i.id %}">{{ i.date }}({{ i.orderid }})</a> </td>
+                </tr>
+                <tr>
+                    <td>Products Price : &#8377;{{ i.subtotal }}</td>
+                    <td align="right">Status : </td>
+                        {% ifequal i.status 'started' %}
+                            <td style="color: orange">{{ i.status }}</td>
+                        {% else %}
+                        {% ifequal i.status 'finished' %}
+                            <td style="color: green">{{ i.status }}</td>
+                        {% else %}
+                        {% ifequal i.status 'canceled' %}
+                            <td style="color: red">{{ i.status }}</td>
+                        {% else %}
+                        {% ifequal i.status 'notstarted' %}
+                            <td style="color: red">{{ i.status }}</td>
+                        {% endifequal %}
+                        {% endifequal %}
+                        {% endifequal %}
+                        {% endifequal %}
+
+                </tr>
+                <tr>
+                    <td colspan="3"><HR/></td>
+                </tr>
+
+                {% endfor %}
+
+            </table>
+            {% endif %}
+    </div>
+
+{% endblock content %}

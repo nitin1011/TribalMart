@@ -1,0 +1,120 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+                <div class="row">
+                    <div class="col-md-7 mx-auto">
+                        <div class="card">
+                                <div class="card-header bg-primary text-white">
+                                        <h4><i class="fas fa-user-plus"></i>Login </h4>
+                                    </div>
+                            <div class="card-body">
+                                <nav>
+                                    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                                        <a class="nav-item nav-link active" id="nav-customer-tab" data-toggle="tab" href="#nav-customer" role="tab" aria-controls="nav-home" aria-selected="true">Customer</a>
+                                        <a class="nav-item nav-link" id="nav-shopkeeper-tab" data-toggle="tab" href="#nav-shopkeeper" role="tab" aria-controls="nav-profile" aria-selected="false">Shopkeeper</a>
+                                        <a class="nav-item nav-link" id="nav-cra-tab" data-toggle="tab" href="#nav-cra" role="tab" aria-controls="nav-contact" aria-selected="false">Customer Review Assistant</a>
+                                        <a class="nav-item nav-link" id="nav-admin-tab" data-toggle="tab" href="#nav-admin" role="tab" aria-controls="nav-contact" aria-selected="false">Admin</a>
+                                    </div>
+                                </nav>
+                                    <div class="tab-content" id="nav-tabContent">
+                                        <div class="tab-pane fade show active" id="nav-customer" role="tabpanel" aria-labelledby="nav-customer-tab">
+                                            <!--ALERT-->
+                                            {% include '_alerts.html' %}
+                                            <form method="POST">
+                                                {% csrf_token %}
+                                               <div class="form-group" hidden>
+                                                        <input name="category" type="text" class="form-control" value="customer" required>
+                                                    </div>
+                                          <div class="form-group">
+                                            <label for="exampleInputUsername1">Username</label>
+                                            <input name="username" type="text" class="form-control" id="exampleInputUsername1" placeholder="Enter username" required>
+                                          </div>
+
+                                          <div class="form-group">
+                                            <label for="exampleInputPassword1">Password</label>
+                                            <input name="password" type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" required>
+                                          </div>
+
+                                          <a href="{% url 'forgot-password' %}" class="float-right">forgot password?</a>
+
+                                          <button type="submit" class="btn btn-primary mt-4">Login</button>
+                                        </form>
+                                        </div>
+                                        <div class="tab-pane fade" id="nav-shopkeeper" role="tabpanel" aria-labelledby="nav-shopkeeper-tab">
+
+                                            <form method="POST">
+                                                {% csrf_token %}
+                                               <div class="form-group" hidden>
+                                                        <input name="category" type="text" class="form-control" value="shopkeeper" required>
+                                                    </div>
+                                          <div class="form-group">
+                                            <label for="exampleInputUsername2">Shop Name</label>
+                                            <input name="username" type="text" class="form-control" id="exampleInputUsername2" placeholder="Enter username" required>
+                                          </div>
+
+                                          <div class="form-group">
+                                            <label for="exampleInputPassword2">Password</label>
+                                            <input name="password" type="password" class="form-control" id="exampleInputPassword2" placeholder="Password" required>
+                                          </div>
+
+                                           <a href="{% url 'forgot-password' %}" class="float-right">forgot password?</a>
+
+                                          <button type="submit" class="btn btn-primary mt-4">Login</button>
+                                        </form>
+                                        </div>
+                                        <div class="tab-pane fade" id="nav-cra" role="tabpanel" aria-labelledby="nav-cra-tab">
+                                            <form method="POST">
+                                                {% csrf_token %}
+                                               <div class="form-group" hidden>
+                                                        <input name="category" type="text" class="form-control" value="cra" required>
+                                                    </div>
+                                          <div class="form-group">
+                                            <label for="exampleInputUsername11">Username</label>
+                                            <input name="username" type="text" class="form-control" id="exampleInputUsername11" placeholder="Enter username" required>
+                                          </div>
+
+                                          <div class="form-group">
+                                            <label for="exampleInputPassword11">Password</label>
+                                            <input name="password" type="password" class="form-control" id="exampleInputPassword11" placeholder="Password" required>
+                                          </div>
+
+                                           <a href="{% url 'forgot-password' %}" class="float-right">forgot password?</a>
+
+                                          <button type="submit" class="btn btn-primary mt-4">Login</button>
+                                        </form>
+                                        </div>
+                                        <div class="tab-pane fade" id="nav-admin" role="tabpanel" aria-labelledby="nav-admin-tab">
+                                            <form method="POST">
+                                                {% csrf_token %}
+                                               <div class="form-group" hidden>
+                                                        <input name="category" type="text" class="form-control" value="admin" required>
+                                                    </div>
+                                          <div class="form-group">
+                                            <label for="exampleInputUsername">Username</label>
+                                            <input name="username" type="text" class="form-control" id="exampleInputUsername" placeholder="Enter username" required>
+                                          </div>
+
+                                          <div class="form-group">
+                                            <label for="exampleInputPassword">Password</label>
+                                            <input name="password" type="password" class="form-control" id="exampleInputPassword" placeholder="Password" required>
+                                          </div>
+
+                                           <a href="{% url 'forgot-password' %}" class="float-right">forgot password?</a>
+
+                                          <button type="submit" class="btn btn-primary mt-4">Login</button>
+                                        </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            <div class="row mb-3">
+                                <div class="col mr-5 ml-5 text-center">
+                                    or <a href="{% url 'register' %}">Sign Up</a>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+{% endblock content %}
